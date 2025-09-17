@@ -15,7 +15,7 @@ export default function Sidebar({ onLinkClick }: { onLinkClick?: () => void }) {
   const pathname = usePathname();
 
   return (
-    <aside className="w-56 h-screen flex-shrink-0 bg-[#107c8f]/35 text-white p-4">
+    <aside className="w-45 h-screen flex-shrink-0 bg-[#107c8f]/35 text-white p-4">
       <h2 className="mb-6 text-xl font-bold">Invest Dash</h2>
       <nav className="space-y-2">
         {navItems.map((item) => {
@@ -26,7 +26,7 @@ export default function Sidebar({ onLinkClick }: { onLinkClick?: () => void }) {
               href={item.href}
               onClick={onLinkClick} // close menu on mobile link click
               className={`block rounded-lg px-3 py-2 transition ${
-                active ? "bg-indigo-500 font-semibold" : "hover:bg-indigo-600"
+                active ? "bg-cyan-600 font-semibold" : "hover:bg-cyan-800"
               }`}
             >
               {item.name}
