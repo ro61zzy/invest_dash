@@ -18,6 +18,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import Loader from "../../../components/Loader";
 
 // Simple mock data for the chart, replace with real historical data from usePortfolio hook
 const chartData = [
@@ -33,7 +34,7 @@ export default function PortfolioPage() {
   const { holdings, quotes, isLoading, isError } = usePortfolio();
 
   if (isLoading) {
-    return <p className="text-white text-center pt-5">Loading portfolio data...</p>;
+    return <Loader />
   }
 
   if (isError) {

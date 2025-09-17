@@ -4,6 +4,7 @@ import PortfolioSummary from "../../components/PortfolioSummary";
 import MarketMovers from "../../components/MarketMovers";
 import MarketNews from "../../components/MarketNews";
 import useMultiQuote from "../../hooks/useMultiQuote";
+import Loader from "../../components/Loader";
 
 const featuredSymbols = [
   "AAPL",
@@ -22,9 +23,7 @@ export default function DashboardPage() {
   const { quotes, isLoading, isError } = useMultiQuote(featuredSymbols);
 
   if (isLoading) {
-    return (
-      <p className="text-center text-white mt-20">Loading market data...</p>
-    );
+    return <Loader />
   }
   if (isError || !quotes) {
     return (
