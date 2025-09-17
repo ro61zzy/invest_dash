@@ -1,5 +1,4 @@
 "use client";
-import { Suspense } from "react";
 import QuoteCard from "../../components/QuoteCard";
 import PortfolioSummary from "../../components/PortfolioSummary";
 import MarketMovers from "../../components/MarketMovers";
@@ -23,75 +22,54 @@ export default function DashboardPage() {
   const { quotes, isLoading, isError } = useMultiQuote(featuredSymbols);
 
   if (isLoading) {
-    return (
-      <section className="space-y-8">
-        <p className="text-white text-lg text-center mt-20">
-          Loading market data...
-        </p>
-      </section>
-    );
+    return <p className="text-center text-white mt-20">Loading market data...</p>;
   }
-
   if (isError || !quotes) {
-    return (
-      <section className="space-y-8">
-        <p className="text-red-500 text-lg text-center mt-20">
-          Error loading market data. Please try again later.
-        </p>
-      </section>
-    );
+    return <p className="text-center text-red-500 mt-20">Failed to load data.</p>;
   }
 
-  const combinedQuotes = quotes.map((quote, index) => ({
-    symbol: featuredSymbols[index] ?? "N/A",
-    quote: quote,
+  const combinedQuotes = quotes.map((quote, i) => ({
+    symbol: featuredSymbols[i] ?? "N/A",
+    quote,
   }));
 
   return (
-    <section className="space-y-8">
-      {/* <div className="border-b border-gray-700 pb-4">
-        <h1 className="text-4xl font-bold text-gray-100">Welcome Back</h1>
-        <p className="mt-2 text-lg text-gray-400">
-          Your unified dashboard for personalized investment insights.
-        </p>
-      </div> */}
-
-      <h2 className="text-2xl font-bold text-gray-100">Market Overview</h2>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-        {combinedQuotes.map((item) => (
-          <QuoteCard
-            key={item.symbol}
-            symbol={item.symbol}
-            name={item.symbol}
-            price={item.quote.c}
-            change={item.quote.d}
-            percentChange={item.quote.dp}
-          />
-        ))}
-      </div>
-
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-        <div className="rounded-lg bg-gray-800 p-6 shadow-md">
-          <h2 className="text-2xl font-bold text-gray-100 mb-4">
-            Your Portfolio
-          </h2>
-          <PortfolioSummary />
+    <div className="grid grid-cols-1 xl:grid-cols-[1fr_300px] gap-6 pt-4">
+      {/* Main content */}
+      <div className="space-y-6 ">
+        <h2 className="text-xl font-semibold text-gray-100">Market Overview</h2>
+        <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-5 2xl:grid-cols-6 gap-4">
+          {combinedQuotes.map((item) => (
+            <QuoteCard
+              key={item.symbol}
+              symbol={item.symbol}
+              name={item.symbol}
+              price={item.quote.c}
+              change={item.quote.d}
+              percentChange={item.quote.dp}
+            />
+          ))}
         </div>
 
-        <div className="rounded-lg bg-gray-800 p-6 shadow-md">
-          <h2 className="text-2xl font-bold text-gray-100 mb-4">
-            Today's Market Movers
-          </h2>
-          <MarketMovers />
-        </div>
+       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
+  <section className="w-full max-w-full overflow-hidden rounded-lg bg-gray-800 p-4 sm:p-5 shadow-sm">
+    <h2 className="text-lg font-semibold text-gray-100 mb-3">Your Portfolio</h2>
+    <PortfolioSummary />
+  </section>
+
+  <section className="w-full max-w-full overflow-hidden rounded-lg bg-gray-800 p-4 sm:p-5 shadow-sm">
+    <h2 className="text-lg font-semibold text-gray-100 mb-3">Market Movers</h2>
+    <MarketMovers />
+  </section>
+</div>
+
       </div>
 
-      <div className="rounded-lg bg-gray-800 p-6 shadow-md">
-        <h2 className="text-2xl font-bold text-gray-100 mb-4">
-          Latest Headlines
-        </h2>
+      {/* Sidebar */}
+      <aside className="rounded-lg bg-gray-800 p-5 shadow-sm h-fit sticky top-6">
+        <h2 className="text-lg font-semibold text-gray-100 mb-3">Latest Headlines</h2>
         <MarketNews />
-      </div>
-    </section>
+      </aside>
+    </div>
   );
 }

@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 
+
+
+
+
 @keyframes ticker {
   0% {
     transform: translateX(100%);
@@ -12,7 +16,16 @@
 
 .ticker-tape {
   animation: ticker 40s linear infinite;
+  min-width: 100%;      /* prevents shrinking below screen width */
 }
+
+@media (max-width: 640px) {
+  .ticker-tape {
+    animation-duration: 60s; /* slower on small screens */
+  }
+}
+
+
 
 
 

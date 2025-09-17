@@ -26,12 +26,12 @@ export default function PortfolioSummary() {
         <PieChart>
           <Pie
             data={data}
-            dataKey="value"
-            nameKey="name"
-            cx="50%"
-            cy="50%"
-            outerRadius={80}
-            label
+      dataKey="value"
+      nameKey="name"
+      cx="50%"
+      cy="50%"
+      outerRadius="70%" // use percentage for better scaling
+      labelLine={false} // disable long label lines on tiny screens
           >
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={entry.color} />

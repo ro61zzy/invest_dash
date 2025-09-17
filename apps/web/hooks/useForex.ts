@@ -15,7 +15,7 @@ export default function useForex(pairs: string[]) {
   const { data, error, isLoading }: SWRResponse<FinnhubForexQuote[], any> = useSWR(
     `/api/forex?pairs=${pairs.join(",")}`,
     fetcher,
-    { refreshInterval: 5000 }
+    { refreshInterval: 10000 }
   );
 
   return {

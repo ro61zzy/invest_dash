@@ -28,22 +28,22 @@ export default function QuoteCard({
   );
 
   return (
-    <div className="rounded-lg bg-gray-800 p-6 shadow-md transition-all hover:bg-gray-700">
+    <div className="rounded-lg bg-gray-800 p-4 shadow-md transition-all hover:bg-gray-700">
       <div className="flex items-center justify-between">
-        <h3 className="text-xl font-semibold text-white">{name}</h3>
+        <h3 className="text-[10px] md:text-l xl:text-[15px] font-semibold text-white">{name}</h3>
         <span
-          className={`rounded-full px-3 py-1 text-xs font-bold ${
+          className={`rounded-full px-2 py-1 text-[8px] font-bold ${
             isPositive ? "bg-green-600" : "bg-red-600"
           }`}
         >
           {symbol}
         </span>
       </div>
-      <p className="mt-4 text-3xl font-bold text-white">
+      <p className="mt-1 text-m md:text-[18px] xl:text-[20px] font-bold text-white">
         ${safePrice.toFixed(2)}
       </p>
-      <div className="mt-2 flex items-center">
-        <span className={`flex items-center text-sm font-medium ${changeColor}`}>
+      <div className="mt-1 flex items-center">
+        <span className={`flex items-center text-[8px] font-medium ${changeColor}`}>
           {arrowIcon}
           {safeChange.toFixed(2)} ({safePercent.toFixed(2)}%)
         </span>
