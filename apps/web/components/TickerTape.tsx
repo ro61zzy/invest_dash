@@ -4,7 +4,7 @@ import useForex from "../hooks/useForex";
 import { FinnhubForexQuote } from "@invest/types";
 import { TrendingUp, TrendingDown } from "lucide-react";
 
-const forexPairs = ["EURUSD", "GBPJPY", "AUDUSD", "USDCHF", "GBPUSD", "USDCAD",];
+const forexPairs = ["EURUSD", "GBPJPY", "AUDUSD", "USDCHF",];
 
 export default function TickerTape() {
   const { rates, isLoading, isError } = useForex(forexPairs);
