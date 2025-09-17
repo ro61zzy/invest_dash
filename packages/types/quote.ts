@@ -7,3 +7,8 @@ export interface FinnhubQuote {
   o: number; // Open price of the day
   pc: number; // Previous close price
 }
+
+export interface FinnhubForexQuote {
+  s: string; // Symbol
+  p: number; // Price
+}

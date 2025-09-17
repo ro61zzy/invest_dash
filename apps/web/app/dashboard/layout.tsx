@@ -1,5 +1,6 @@
 // apps/web/app/dashboard/layout.tsx
 import Sidebar from "../../components/Sidebar";
+import TickerTape from "../../components/TickerTape";
 
 export default function DashboardLayout({
   children,
@@ -7,7 +8,8 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex min-h-screen w-full bg-[#020617]">
+    <div className="relative flex h-screen w-full bg-[#020617]">
+      {/* Grid background */}
       <div
         className="absolute inset-0 pointer-events-none z-0"
         style={{
@@ -19,10 +21,15 @@ export default function DashboardLayout({
           backgroundSize: "40px 40px",
         }}
       />
+      {/* Fixed sidebar */}
       <div className="relative z-10">
         <Sidebar />
       </div>
-      <main className="relative z-10 flex-1 p-6 text-white">{children}</main>
+      {/* Scrollable main area */}
+      <main className="relative z-10 flex-1 overflow-y-auto p-6 text-white">
+        <TickerTape />
+        {children}
+      </main>
     </div>
   );
 }

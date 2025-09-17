@@ -1,6 +1,21 @@
 @import "tailwindcss";
 
 
+@keyframes ticker {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.ticker-tape {
+  animation: ticker 40s linear infinite;
+}
+
+
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;

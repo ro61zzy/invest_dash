@@ -1,4 +1,3 @@
-// apps/web/components/cards/QuoteCard.tsx
 import { ArrowUp, ArrowDown } from "lucide-react";
 
 interface QuoteCardProps {
@@ -16,11 +15,14 @@ export default function QuoteCard({
   change,
   percentChange,
 }: QuoteCardProps) {
-  const isPositive = percentChange >= 0;
+  const safePrice = typeof price === "number" ? price : 0;
+  const safeChange = typeof change === "number" ? change : 0;
+  const safePercent = typeof percentChange === "number" ? percentChange : 0;
+
+  const isPositive = safePercent >= 0;
   const changeColor = isPositive ? "text-green-500" : "text-red-500";
   const arrowIcon = isPositive ? (
     <ArrowUp className="w-5 h-5 text-green-500" />
-
   ) : (
     <ArrowDown className="w-5 h-5 text-red-500" />
   );
@@ -37,11 +39,13 @@ export default function QuoteCard({
           {symbol}
         </span>
       </div>
-      <p className="mt-4 text-3xl font-bold text-white">${price.toFixed(2)}</p>
+      <p className="mt-4 text-3xl font-bold text-white">
+        ${safePrice.toFixed(2)}
+      </p>
       <div className="mt-2 flex items-center">
         <span className={`flex items-center text-sm font-medium ${changeColor}`}>
           {arrowIcon}
-          {change.toFixed(2)} ({percentChange.toFixed(2)}%)
+          {safeChange.toFixed(2)} ({safePercent.toFixed(2)}%)
         </span>
       </div>
     </div>
