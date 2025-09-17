@@ -1,4 +1,4 @@
-// apps/web/components/dashboard/MarketMovers.tsx
+
 const mockMovers = [
   { name: "Tesla Inc.", symbol: "TSLA", change: "+5.1%", isGainer: true },
   { name: "Nvidia Corp.", symbol: "NVDA", change: "+4.3%", isGainer: true },
@@ -12,7 +12,7 @@ export default function MarketMovers() {
       {mockMovers.map((mover) => (
         <li key={mover.symbol} className="flex justify-between items-center">
           <div>
-            <p className="text-white font-medium">{mover.name}</p>
+            <p className="text-cyan-500 font-medium">{mover.name}</p>
             <p className="text-gray-400 text-sm">{mover.symbol}</p>
           </div>
           <span

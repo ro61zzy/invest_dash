@@ -1,4 +1,3 @@
-// apps/web/components/TickerTape.tsx
 "use client";
 import useForex from "../hooks/useForex";
 import { FinnhubForexQuote } from "@invest/types";

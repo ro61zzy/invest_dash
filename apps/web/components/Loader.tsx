@@ -1,4 +1,4 @@
-// components/Loader.tsx
+
 "use client";
 export default function Loader() {
   return (

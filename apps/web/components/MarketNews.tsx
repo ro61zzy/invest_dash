@@ -1,12 +1,12 @@
-// apps/web/components/dashboard/MarketNews.tsx
 "use client";
 import useNews from "../hooks/useNews";
+import Loader from "./Loader";
 
 export default function MarketNews() {
  const { news, isLoading, isError } = useNews("general");
 
 
-  if (isLoading) return <div>Loading news...</div>;
+  if (isLoading) return <Loader />;
   if (isError) return <div>Error loading news.</div>;
   if (!news || news.length === 0) return <div>No news found.</div>;
 

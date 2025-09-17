@@ -1,4 +1,4 @@
-// grid background, geometry vive
+// grid background, geometry vibe
 export default function BackgroundGrid() {
   return (
     <div

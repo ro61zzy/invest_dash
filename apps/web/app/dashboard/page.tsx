@@ -70,10 +70,8 @@ export default function DashboardPage() {
           </section>
         </div>
       </div>
-
-      {/* Sidebar */}
       <aside className="rounded-lg bg-gray-800 p-5 shadow-sm h-fit sticky top-6">
-        <h2 className="text-lg font-semibold text-gray-100 mb-3">
+        <h2 className="text-lg font-semibold text-cyan-500 mb-3">
           Latest Headlines
         </h2>
         <MarketNews />

@@ -1,4 +1,3 @@
-// apps/web/components/Sidebar.tsx
 "use client";
 
 import Link from "next/link";
@@ -24,7 +23,7 @@ export default function Sidebar({ onLinkClick }: { onLinkClick?: () => void }) {
             <Link
               key={item.href}
               href={item.href}
-              onClick={onLinkClick} // close menu on mobile link click
+              onClick={onLinkClick} 
               className={`block rounded-lg px-3 py-2 transition ${
                 active ? "bg-cyan-600 font-semibold" : "hover:bg-cyan-800"
               }`}

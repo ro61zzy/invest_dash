@@ -1,4 +1,3 @@
-// apps/web/components/dashboard/PortfolioSummary.tsx
 "use client";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 
@@ -21,7 +20,7 @@ export default function PortfolioSummary() {
         <span className="text-green-500 font-bold">+1.25%</span>
       </div>
 
-      {/* The Pie Chart */}
+   
       <ResponsiveContainer width="100%" height={200}>
         <PieChart>
           <Pie
@@ -30,8 +29,8 @@ export default function PortfolioSummary() {
       nameKey="name"
       cx="50%"
       cy="50%"
-      outerRadius="70%" // use percentage for better scaling
-      labelLine={false} // disable long label lines on tiny screens
+      outerRadius="70%" 
+      labelLine={false} 
           >
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={entry.color} />

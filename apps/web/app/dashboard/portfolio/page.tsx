@@ -19,8 +19,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import Loader from "../../../components/Loader";
-
-// Simple mock data for the chart, replace with real historical data from usePortfolio hook
 const chartData = [
   { date: "Jan", value: 6000 },
   { date: "Feb", value: 8500 },
@@ -95,7 +93,6 @@ export default function PortfolioPage() {
                 {holdings.map((holding, index) => {
                   const quote = quotes?.[index];
                   if (!quote || typeof quote.c !== "number") {
-                    // Fallback row while quotes load or missing data
                     return (
                       <TableRow
                         key={holding.symbol}
