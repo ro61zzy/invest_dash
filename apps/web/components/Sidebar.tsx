@@ -14,7 +14,7 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-56 min-h-screen bg-indigo-700 text-white p-4">
+    <aside className="w-56 min-h-screen bg-[#06B6D4]/85 text-white p-4">
       <h2 className="mb-6 text-xl font-bold">Invest Dash</h2>
       <nav className="space-y-2">
         {navItems.map((item) => {

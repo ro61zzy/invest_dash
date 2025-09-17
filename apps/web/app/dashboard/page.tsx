@@ -1,5 +1,5 @@
 "use client";
-import useQuote from "../..//components/useQuote";
+import useQuote from "../../lib/useQuote";
 
 export default function DashboardPage() {
   const { quote, isLoading, isError } = useQuote("AAPL");

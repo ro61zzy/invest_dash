@@ -6,8 +6,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <body className="min-h-screen bg-gray-50 text-gray-900">
         <div className="flex">
-          {/* Sidebar placeholder */}
-          <main className="flex-1 p-4">{children}</main>
+          <main className="flex-1 ">{children}</main>
         </div>
       </body>
     </html>
