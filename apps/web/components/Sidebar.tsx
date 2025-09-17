@@ -5,9 +5,9 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
   { name: "Dashboard", href: "/dashboard" },
-  { name: "Onboarding", href: "/dashboard/onboarding" },
+  { name: "My Stock", href: "/dashboard/my-stock" },
+  { name: "Insight", href: "/dashboard/insight" },
   { name: "Portfolio", href: "/dashboard/portfolio" },
-  { name: "Settings", href: "/dashboard/settings" },
 ];
 
 export default function Sidebar({ onLinkClick }: { onLinkClick?: () => void }) {

@@ -12,7 +12,7 @@ export default function MarketNews() {
 
   return (
     <ul className="space-y-4">
-      {news.slice(0, 5).map((article) => (
+      {news.slice(0, 6).map((article) => (
         <li
           key={article.id}
           className="border-b border-gray-700 pb-4 last:border-b-0 last:pb-0"
