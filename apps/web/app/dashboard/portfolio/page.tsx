@@ -31,8 +31,7 @@ const chartData = [
 ];
 
 export default function PortfolioPage() {
-  const { holdings, quotes, historicalData, isLoading, isError } =
-    usePortfolio();
+  const { holdings, quotes, isLoading, isError } = usePortfolio();
 
   const mockHistoricalData = {
     t: Array.from({ length: 30 }, (_, i) => 1690000000 + i * 86400), // 30 days
@@ -60,43 +59,42 @@ export default function PortfolioPage() {
   }, 0);
 
   return (
-    <section className="pt-5 ">
-           <div className="flex flex-row gap-4 w-full ">
+   <section className="pt-5">
+  <div className="flex flex-col md:flex-row gap-4 w-full">
+    
+    <div className="flex flex-col gap-4 flex-1 w-full">
+      
+      <div className="flex flex-col md:flex-row gap-4 w-full">
+        <Card className="flex-1 bg-gray-800 text-white">
+          <CardHeader>
+            <CardTitle>Portfolio Performance</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-2xl mt-3 font-bold">${portfolioValue.toFixed(2)}</p>
+            <p className="text-green-500">
+              +${(portfolioValue * 0.05).toFixed(2)} (+5.00%) Today
+            </p>
+            <div className="h-64 mt-5">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={chartData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#4a5568" />
+                  <XAxis dataKey="date" stroke="#9ca3af" />
+                  <YAxis stroke="#9ca3af" />
+                  <Tooltip />
+                  <Line type="monotone" dataKey="value" stroke="#34d399" />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </CardContent>
+        </Card>
 
-     <div className="flex flex-col gap-4 w-full">
-        <div className="flex flex-row gap-4 w-full">
-          <Card className="flex-1 bg-gray-800 text-white">
-            <CardHeader>
-              <CardTitle>Portfolio Performance</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-2xl mt-3 font-bold">
-                ${portfolioValue.toFixed(2)}
-              </p>
-              <p className="text-green-500">
-                +${(portfolioValue * 0.05).toFixed(2)} (+5.00%) Today
-              </p>
-              <div className="h-64 mt-5">
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={chartData}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#4a5568" />
-                    <XAxis dataKey="date" stroke="#9ca3af" />
-                    <YAxis stroke="#9ca3af" />
-                    <Tooltip />
-                    <Line type="monotone" dataKey="value" stroke="#34d399" />
-                  </LineChart>
-                </ResponsiveContainer>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="flex-1 bg-gray-800 text-white">
-            <CardHeader>
-              <CardTitle>Your Holdings</CardTitle>
-            </CardHeader>
-            <div className="mt-5"></div>
-            <CardContent>
-              <Table>
+        <Card className="flex-1 bg-gray-800 text-white">
+          <CardHeader>
+            <CardTitle>Your Holdings</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="overflow-x-auto">
+              <Table className="min-w-full">
                 <TableHeader>
                   <TableRow className="border-gray-700">
                     <TableHead>Symbol</TableHead>
@@ -111,71 +109,55 @@ export default function PortfolioPage() {
                     const quote = quotes?.[index];
                     if (!quote || typeof quote.c !== "number") {
                       return (
-                        <TableRow
-                          key={holding.symbol}
-                          className="border-gray-700"
-                        >
-                          <TableCell className="font-medium">
-                            {holding.symbol}
-                          </TableCell>
+                        <TableRow key={holding.symbol} className="border-gray-700">
+                          <TableCell className="font-medium">{holding.symbol}</TableCell>
                           <TableCell>{holding.shares}</TableCell>
-                          <TableCell className="text-gray-500">
-                            Loading…
-                          </TableCell>
+                          <TableCell className="text-gray-500">Loading…</TableCell>
                         </TableRow>
                       );
                     }
 
                     const value = holding.shares * quote.c;
                     const isPositive = quote.dp >= 0;
-                    const changeColor = isPositive
-                      ? "text-green-500"
-                      : "text-red-500";
+                    const changeColor = isPositive ? "text-green-500" : "text-red-500";
 
                     return (
-                      <TableRow
-                        key={holding.symbol}
-                        className="border-gray-700"
-                      >
-                        <TableCell className="font-medium">
-                          {holding.symbol}
-                        </TableCell>
+                      <TableRow key={holding.symbol} className="border-gray-700">
+                        <TableCell className="font-medium">{holding.symbol}</TableCell>
                         <TableCell>{holding.shares}</TableCell>
                         <TableCell>${quote.c.toFixed(2)}</TableCell>
                         <TableCell>${value.toFixed(2)}</TableCell>
                         <TableCell className={changeColor}>
-                          {typeof quote.dp === "number"
-                            ? quote.dp.toFixed(2)
-                            : "—"}
-                          %
+                          {typeof quote.dp === "number" ? quote.dp.toFixed(2) : "—"}%
                         </TableCell>
                       </TableRow>
                     );
                   })}
                 </TableBody>
               </Table>
-            </CardContent>
-          </Card>
-        </div>
-      <div className=" text-white mt-4 mb-5 h-96">
-  <CardHeader>
-    <CardTitle>Historical Stock Prices (Candlestick)</CardTitle>
-  </CardHeader>
-  <CardContent className="h-full">
-    <CandlestickChart data={mockHistoricalData} />
-  </CardContent>
-</div>
-
-
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
-     <aside className="w-80 rounded-lg bg-gray-800 p-5 shadow-sm h-fit sticky top-6">
-        <h2 className="text-lg font-semibold text-cyan-500 mb-3">
-          Latest Headlines
-        </h2>
-        <MarketNews />
-      </aside>
+      <div className="text-white mt-4 mb-5 h-96">
+        <CardHeader>
+          <CardTitle>Historical Stock Prices (Candlestick)</CardTitle>
+        </CardHeader>
+        <CardContent className="h-full">
+          <CandlestickChart data={mockHistoricalData} />
+        </CardContent>
       </div>
-    </section>
+    </div>
+
+    <aside className="w-full md:w-80 rounded-lg bg-gray-800 p-5 shadow-sm h-fit sticky top-6">
+      <h2 className="text-lg font-semibold text-cyan-500 mb-3">
+        Latest Headlines
+      </h2>
+      <MarketNews />
+    </aside>
+  </div>
+</section>
+
   );
 }

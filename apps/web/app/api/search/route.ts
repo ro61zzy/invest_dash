@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 
-// Reads your Finnhub API key from environment variables
 const FINNHUB_API_KEY = process.env.FINNHUB_API_KEY as string;
 
 export async function GET(request: Request) {
@@ -22,7 +21,6 @@ export async function GET(request: Request) {
   }
 
   try {
-    // Call Finnhub search endpoint
     const response = await fetch(
       `https://finnhub.io/api/v1/search?q=${encodeURIComponent(
         query
@@ -39,9 +37,15 @@ export async function GET(request: Request) {
 
     const data = await response.json();
     return NextResponse.json(data);
-  } catch (error: any) {
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return NextResponse.json(
+        { error: "Unexpected error", details: error.message },
+        { status: 500 }
+      );
+    }
     return NextResponse.json(
-      { error: "Unexpected error", details: error.message },
+      { error: "Unexpected error", details: String(error) },
       { status: 500 }
     );
   }

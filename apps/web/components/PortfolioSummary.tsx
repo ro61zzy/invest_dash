@@ -16,21 +16,21 @@ export default function PortfolioSummary() {
         <span className="text-2xl font-bold">$100,000</span>
       </div>
       <div className="flex justify-between items-center text-gray-400">
-        <p className="text-lg">Today's Return</p>
+       <p className="text-lg">{"Today's Return"}</p>
+
         <span className="text-green-500 font-bold">+1.25%</span>
       </div>
 
-   
       <ResponsiveContainer width="100%" height={200}>
         <PieChart>
           <Pie
             data={data}
-      dataKey="value"
-      nameKey="name"
-      cx="50%"
-      cy="50%"
-      outerRadius="70%" 
-      labelLine={false} 
+            dataKey="value"
+            nameKey="name"
+            cx="50%"
+            cy="50%"
+            outerRadius="70%"
+            labelLine={false}
           >
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={entry.color} />
@@ -40,7 +40,7 @@ export default function PortfolioSummary() {
         </PieChart>
       </ResponsiveContainer>
       <p className="text-gray-400 text-sm text-center">
-        *Asset allocation is based on mock data.
+        {"*Asset allocation isn't real data."}
       </p>
     </div>
   );

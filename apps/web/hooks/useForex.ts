@@ -11,7 +11,7 @@ const fetcher = async (url: string) => {
 };
 
 export default function useForex(pairs: string[]) {
-  // Use useSWR with an explicit return type
+
   const { data, error, isLoading }: SWRResponse<FinnhubForexQuote[], any> = useSWR(
     `/api/forex?pairs=${pairs.join(",")}`,
     fetcher,
@@ -21,6 +21,6 @@ export default function useForex(pairs: string[]) {
   return {
     rates: data,
     isLoading,
-    isError: !!error, // !!error converts the error object to a boolean
+    isError: !!error,
   };
 }

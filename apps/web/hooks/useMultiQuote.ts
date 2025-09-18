@@ -1,4 +1,4 @@
-// apps/web/lib/useMultiQuote.ts
+
 "use client";
 import useSWR from "swr";
 import { FinnhubQuote } from "@invest/types";

@@ -17,8 +17,13 @@ export async function GET(request: Request) {
     );
 
     return NextResponse.json(results);
-  } catch (e: any) {
+} catch (e: unknown) {
+  if (e instanceof Error) {
+    console.error("Error fetching rates:", e.message);
+  } else {
     console.error("Error fetching rates:", e);
-    return NextResponse.json({ error: "Failed to fetch rates" }, { status: 502 });
   }
+  return NextResponse.json({ error: "Failed to fetch rates" }, { status: 502 });
+}
+
 }

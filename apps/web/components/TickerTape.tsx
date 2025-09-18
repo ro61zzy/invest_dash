@@ -1,7 +1,6 @@
 "use client";
 import useForex from "../hooks/useForex";
 import { FinnhubForexQuote } from "@invest/types";
-import { TrendingUp, TrendingDown } from "lucide-react";
 
 const forexPairs = ["EURUSD", "GBPJPY", "AUDUSD", "USDCHF",];
 
